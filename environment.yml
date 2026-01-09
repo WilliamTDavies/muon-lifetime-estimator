@@ -1,0 +1,14 @@
+name: muon-env
+channels:
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python=3.13.5
+  - numpy
+  - pandas
+  - matplotlib
+  - scipy
+  - pillow
+  - seaborn
+  - pip
