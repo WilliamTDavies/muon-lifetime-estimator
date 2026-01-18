@@ -15,7 +15,7 @@ The project is designed to reflect the workflow and standards used in real exper
 
 All data used in this project is available from:
 
-Duncan Carlsmith (2026). QuarkNet Muon Lifetime Explorer (https://www.mathworks.com/matlabcentral/fileexchange/114065-quarknet-muon-lifetime-explorer), MATLAB Central File Exchange. Retrieved January 2, 2026.  
+Duncan Carlsmith (2026). QuarkNet Muon Lifetime Explorer (https://www.mathworks.com/matlabcentral/fileexchange/114065-quarknet-muon-lifetime-explorer), MATLAB Central File Exchange. Retrieved January 8, 2026.  
 
 ## Scientific Objective
 
@@ -50,21 +50,21 @@ After initial inspection and cleaning, the following fields are used:
 
 The analysis follows a clearly defined pipeline, implemented modularly in the repository:
 
-Raw data
-   ↓
-Data ingestion & cleaning
-   ↓
-Event selection & time window cuts
-   ↓
-Exploratory analysis
-   ↓
-Naïve binned fit (demonstration of limitations)
-   ↓
-Unbinned maximum likelihood fit
-   ↓
-Likelihood-based uncertainty estimation
-   ↓
-Validation on synthetic data
+- Raw data
+
+- Data ingestion & cleaning
+
+- Event selection & time window cuts
+
+- Exploratory analysis
+
+- Naïve binned fit (demonstration of limitations)
+
+- Unbinned maximum likelihood fit
+
+- Likelihood-based uncertainty estimation
+
+- Validation on synthetic data
 
 
 Each step is documented and justified in the analysis notebook.
@@ -73,7 +73,7 @@ Each step is documented and justified in the analysis notebook.
 
 Only events satisfying:
 
-$$t_{min}<t<t_{max}$$
+$$t_{min}\lt t\lt t_{max}$$
 
 are retained, where:
 
@@ -87,17 +87,17 @@ These cuts are fixed before fitting and treated as part of the experimental setu
 
 Muon decay is a memoryless process and is modelled as an exponential distribution:
 
-$$f(t∣\tau)=\tfrac{1}{\tau} e^{−t/\tau},\space t≥0$$
+$$f(t∣\tau)=\tfrac{1}{\tau} e^{−t/\tau},\space t\ge 0$$
 
 Because only decays within the interval $(t_{min}, t_{max})$ are observed, the signal distribution is truncated and renormalised:
 
-$$f_{sig}(t|\tau) = \dfrac{\tfrac{1}{\tau}e^{-t/\tau}}{e^{-t_{max}/\tau} - e^{-t_{min}/\tau}}\space (t_{min}<t<t_{max})$$
+$$f_{sig}(t|\tau) = \dfrac{\tfrac{1}{\tau}e^{-t/\tau}}{e^{-t_{max}/\tau} - e^{-t_{min}/\tau}}\space (t_{min}\lt t\lt t_{max})$$
 
 ### Background model
 
 Accidental coincidences and noise are modelled as a uniform distribution in decay time:
 
-$$f_{bkg}(t) = \dfrac{1}{t_{max} - t_{min}}$$​
+$$f_{bkg}(t) = \dfrac{1}{t_{max} - t_{min}}$$
 
 ### Mixture model
 
