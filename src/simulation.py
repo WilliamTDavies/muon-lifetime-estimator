@@ -54,3 +54,22 @@ def halflife_estimation(initial_guess, t_sel, t_min, t_max):
         method="L-BFGS-B"
     )
     return result.x
+
+def likelihood_profiling(tau_hat, P_hat, t_sel, t_min, t_max):
+    nll_min = neg_log_likelihood([tau_hat, P_hat], t_sel, t_min, t_max)
+    tau_grid = np.linspace(tau_hat * 0.5, tau_hat * 1.5, 80)
+    delta_nll = []
+    
+    for tau in tau_grid:
+        def nll_fixed_tau(P):
+            return neg_log_likelihood([tau, P], t_sel, t_min, t_max)
+
+        res = minimize(
+            nll_fixed_tau,
+            x0=[P_hat],
+            bounds=[(0,1)]
+        )
+        delta_nll.append(res.fun - nll_min)
+
+    delta_2nll = 2 * np.array(delta_nll)
+    return tau_grid, delta_2nll

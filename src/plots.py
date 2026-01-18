@@ -29,3 +29,17 @@ def naive_bin_result(bin_list, tau_list, y_min, y_max):
     plt.ylabel("Muon half-life (μs)")
     plt.ylim((y_min, y_max))
     plt.show()
+
+def pdf_display(t_plot, pdf, t_sel, bin_num):
+    plt.figure(figsize=(6,4))
+    plt.hist(t_sel, bins=bin_num, label="Data")
+    plt.plot(
+        t_plot,
+        pdf,
+        label="Unbinned MLE model"
+    )
+    plt.xlabel("Decay time (µs)")
+    plt.ylabel("Counts")
+    plt.legend()
+    plt.tight_layout()
+    plt.show()
